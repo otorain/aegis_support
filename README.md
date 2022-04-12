@@ -4,7 +4,7 @@ Aegis Support is a collection of utility classes and library extensions that wer
 ## Usage
 
 ### AegisSupport::SecureNumber
-A module with `has_secure_number` method for generate unique numbers，
+A module with `has_secure_number` method for generate unique numbers
 
 ```ruby
 # Schema: Order(order_no:string)
