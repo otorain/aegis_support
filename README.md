@@ -23,7 +23,8 @@ order.order_no # 15103771760966048900
 
 The generate algorithm is: 
 ```ruby
-SecureRandom.random_number(4.gigabytes ** 2).to_s.rjust(20, "0")
+maximum_number = 99999_99999_99999_99999 # 20 characters long
+secure_number = SecureRandom.random_number(maximum_number).to_s.rjust(20, "0")
 ```
 
 Thus it will generate a random numeric string of 20 characters long, so collisions are highly unlikely.

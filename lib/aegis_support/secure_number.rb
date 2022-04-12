@@ -13,8 +13,9 @@ module AegisSupport
 
       def generate_secure_number(attribute)
         10.times do |i|
-          # use "4.gigabytes ** 2" just want to generate a random number that maximum length is 20
-          secure_number = SecureRandom.random_number(4.gigabytes ** 2).to_s.rjust(20, "0")
+          # generate random number of 20 characters long
+          maximum_number = 99999_99999_99999_99999
+          secure_number = SecureRandom.random_number(maximum_number).to_s.rjust(20, "0")
 
           if exists?(attribute => secure_number)
             raise "Couldn't generate a unique number in 10 attempts!" if i == 9
