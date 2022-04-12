@@ -1,4 +1,4 @@
-# Aeg*i*sSupport
+# AegisSupport
 Aegis Support is a collection of utility classes and library extensions that were found useful for the Rails framework
 
 ## Usage
@@ -11,7 +11,7 @@ A module with `has_secure_number` method for generate unique numbers，
 class Order < ActiveRecord::Base
   include AegisSupport::SecureNumber
   
-  # replace `order_no` with your column
+  # replace `order_no` with what column your want 
   has_secure_number :order_no
 end
 
