@@ -1,5 +1,5 @@
 
-# AegisSupport ![](https://img.shields.io/badge/language-ruby-red.svg) ![](https://img.shields.io/badge/gem-0.0.4-brightgreen.svg) [![Total Downloads][downloads-total]][rubygems]
+# AegisSupport [![Total Downloads][downloads-total]][rubygems]
 
 Aegis Support is a collection of utility classes and library extensions that were found useful for the Rails framework
 
