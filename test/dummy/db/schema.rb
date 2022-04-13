@@ -10,11 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_12_125255) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_13_033728) do
   create_table "orders", force: :cascade do |t|
     t.string "order_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "order_no_with_prefix"
+    t.string "order_no_with_suffix"
+    t.string "order_no_with_specific_length"
   end
 
 end

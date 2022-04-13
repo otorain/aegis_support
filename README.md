@@ -7,30 +7,40 @@ Aegis Support is a collection of utility classes and library extensions that wer
 A module with `has_secure_number` method for generate unique numbers
 
 ```ruby
-# Schema: Order(order_no:string)
+# Database Schema:
+# 
+# Order(
+#   order_no: string,
+#   order_no_with_prefix: string,
+#   order_no_with_suffix: string,
+#   order_no_with_specific_length: string
+# )
 class Order < ActiveRecord::Base
   include AegisSupport::SecureNumber
   
-  # replace `order_no` with what column your want 
+  # replace above column with what your want 
   has_secure_number :order_no
+  has_secure_number :order_no_with_prefix, prefix: "PN_"
+  has_secure_number :order_no_with_suffix, prefix: "_SN"
+  has_secure_number :order_no_with_specific_length, length: 16
 end
 
 order = Order.new
 order.save
 
 order.order_no # 15103771760966048900
+order.order_no_with_prefix # PN_93550490115056646751
+order.order_no_with_suffix # 26931151941756843999_SN
+order.order_no_with_specific_length # 9124679044244949
 ```
 
-The generate algorithm is: 
-```ruby
-maximum_number = 99999_99999_99999_99999 # 20 characters long
-secure_number = SecureRandom.random_number(maximum_number).to_s.rjust(20, "0")
-```
+`SecureRandom.random_number` is used to generate the random numeric string. when the result's length is less than the 
+specific(default is 20), some leading zeros will be added to the number to make its width equal to the length. `prefix` 
+and `suffix` are not included in the calculation of length.
 
-Thus it will generate a random numeric string of 20 characters long, so collisions are highly unlikely.
-like the `has_secure_token` in ActiveRecord, it's still possible generate a race condition in the database 
-in the same way that `validates_uniqueness_of` can. You're encouraged to add a unique index in the database 
-to deal with this even more unlikely scenario
+when the length is long enough, The collisions are highly unlikely. like the `has_secure_token` in ActiveRecord,
+it's still possible generate a race condition in the database in the same way that `validates_uniqueness_of` can.
+You're encouraged to add a unique index in the database to deal with this even more unlikely scenario
 
 ## Installation
 Add this line to your application's Gemfile:

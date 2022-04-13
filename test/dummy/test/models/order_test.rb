@@ -11,6 +11,9 @@ class OrderTest < ActiveSupport::TestCase
   test "generate unique secure number successful" do
     @order.save
     assert_not_nil @order.order_no
+    assert @order.order_no_with_prefix.start_with?("PN_")
+    assert @order.order_no_with_suffix.end_with?("_SN")
+    assert_equal 16, @order.order_no_with_specific_length.to_s.size
   end
 
   test "regenerate the secure number for the attribute" do
